@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Language Selection</title>
+</head>
+<body>
+
+  <h1>Select Your Language</h1>
+
+  <select id="languageSelect" onchange="changeLanguage()">
+    <option value="en">English</option>
+    <option value="es">Español</option>
+    <!-- Add more language options as needed -->
+  </select>
+
+  <div id="content">
+    <h2>Hello in English</h2>
+    <p>This is some content in English.</p>
+
+    <h2 lang="es" style="display: none;">Hola en Español</h2>
+    <p lang="es" style="display: none;">Este es un contenido en español.</p>
+    <!-- Add more language content as needed -->
+  </div>
+
+  <script>
+    function changeLanguage() {
+      var selectedLanguage = document.getElementById("languageSelect").value;
+      var content = document.getElementById("content");
+
+      var englishContent = content.querySelectorAll(':not([lang="es"])');
+      var spanishContent = content.querySelectorAll('[lang="es"]');
+
+      if (selectedLanguage === "en") {
+        showContent(englishContent);
+        hideContent(spanishContent);
+      } else if (selectedLanguage === "es") {
+        showContent(spanishContent);
+        hideContent(englishContent);
+      }
+      // Add more conditions for other languages if needed
+    }
+
+    function showContent(elements) {
+      elements.forEach(function(element) {
+        element.style.display = "block";
+      });
+    }
+
+    function hideContent(elements) {
+      elements.forEach(function(element) {
+        element.style.display = "none";
+      });
+    }
+  </script>
+
+</body>
+</html>
